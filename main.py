@@ -1,61 +1,50 @@
-from tasks import crawl_page  # ✅ Explicitly import the function
 from rq import Queue
 from rq.job import Job
-import redis
-# from tasks import crawl_page
-from scrappers.platform_scrapper_factory import ScraperFactory
-# Redis setup
-redis_client = redis.Redis()
-queue = Queue(connection=redis_client)
+from settings.redis import redis_client
 import json
+import time
+from scrappers.platform_scrapper_factory import ScraperFactory
+from task import scrape_and_store
 
-def save_to_json(data, filename="scraped_data.json"):
-        """Saves scraped data to a JSON file."""
-        if isinstance(data, set):  # Convert set to list
-            data = list(data)
+# Connect to Redis & Create Queue
+queue = Queue(connection=redis_client)
 
-        with open(filename, "w", encoding="utf-8") as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
-        print(f"Data saved to {filename}")
-   
+def save_to_json(data, filename="./output/scraped_data.json"):
+    """Saves scraped data to a JSON file."""
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+    print(f"📂 Data saved to {filename}")
+
 def start_crawler(domains):
-    
-    jobs = []  # Store job objects
-    data = {}
+    """Enqueues scraping jobs and waits for results."""
+    jobs = []
+
+    # Enqueue each job in Redis Queue
     for domain in domains:
-        # crawl_page(domain)
-        scrapper = ScraperFactory.get_scraper(domain['platform'], domain['url'])   
-        if scrapper:
-         product_links = scrapper.scrape()
-         data[domain['url']] = product_links
+        job = queue.enqueue(scrape_and_store, domain)  # ✅ Queue scrapper.scrape()
+        jobs.append((domain['url'], job.id))  # Store job ID with URL
+        print(f"🚀 Enqueued job {job.id} for {domain['url']}")
 
-         
-         print(f"Total product links: {len(product_links)}")
-        
-        # job = queue.enqueue(crawl_page, domain)  # ✅ Enqueue job correctly
-        # print(f"Enqueued job {job.id} for {domain}")  
-        # jobs.append(job.id)  # Store job ID
+    # Wait for all jobs to finish and collect results
+    all_data = {}
+    for domain_url, job_id in jobs:
+        while True:
+            job = Job.fetch(job_id, connection=redis_client)
+            if job.is_finished:
+                break  # ✅ Job completed
+            print(f"⏳ Waiting for job {job_id} ({domain_url})...")
+            time.sleep(2)
 
-    save_to_json(data, "scraped_data.json")
+        # Fetch results from Redis
+        product_links = json.loads(redis_client.get(domain_url))
+        all_data[domain_url] = product_links
 
-    # return jobs  # Return list of job IDs
+    # Save results to JSON
+    save_to_json(all_data, "scraped_data.json")
+
 
 if __name__ == '__main__':
-    job_ids = start_crawler([
+    start_crawler([
         {'url': 'https://www.virgio.com/collections/all', 'platform': 'virgio'},
-
-        # {'url': 'https://www.tatacliq.com/', 'platform': 'tatacliq'},
-        # {'url': 'https://nykaafashion.com/', 'platform': 'shopify'},
         {'url': 'https://www.westside.com/', 'platform': 'westside'},
-
-        # 'https://www.tatacliq.com/',
-        # 'https://nykaafashion.com/',
-        # 'https://www.westside.com/'
     ])
-
-    # Fetch and check job results
-    # for job_id in job_ids:
-    #     job = Job.fetch(job_id, connection=redis_client)  # ✅ Fetch dynamically
-    #     print(f"Job {job_id} status: {job.get_status()}")  # Show status
-
-
