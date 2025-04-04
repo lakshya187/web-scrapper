@@ -7,7 +7,7 @@ from rq import Queue
 redis_client = redis.Redis()
 queue = Queue('crawlerQueue', connection=redis_client)
 
-PRODUCT_PATTERNS = ['/product/', '/p/', '/item/']
+PRODUCT_PATTERNS = ['collections/all']
 
 def crawl_page(url):
     print(f'Crawling: {url}')
@@ -22,16 +22,18 @@ def crawl_page(url):
         response.raise_for_status()
         
         soup = BeautifulSoup(response.text, 'html.parser')
-        links = set()
+        unique_links = set()
+        all_links = soup.find_all('a', href=True)
+        # print(all_links)
+        for a_tag in all_links:
+            href = a_tag['href']
+            if any(pattern in href for pattern in PRODUCT_PATTERNS):
+                unique_links.add(requests.compat.urljoin(url, href))
         
-        # for a_tag in soup.find_all('a', href=True):
-        #     href = a_tag['href']
-        #     if any(pattern in href for pattern in PRODUCT_PATTERNS):
-        #         links.add(requests.compat.urljoin(url, href))
-        
-        # for link in links:
-        #     redis_client.set(link, 'visited')
-        #     queue.enqueue(crawl_page, link)  
+        for link in unique_links:
+            print(link)
+            # redis_client.set(link, 'visited')
+            # queue.enqueue(crawl_page, link)  
         
     except requests.exceptions.RequestException as e:
         print(f'Error crawling {url}: {e}')
