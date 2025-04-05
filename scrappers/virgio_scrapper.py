@@ -17,11 +17,11 @@ class VirgioScrapper(BaseScraper):
         """Main method to scrape the page."""
         html =  self.fetch_page()
         all_products = self.extract_product_links(html)
-        return all_products
+        return list(all_products)
     
 
     def fetch_page(self):
-        print('Fetching page with Selenium...')
+        print(f'Fetching data for {self.url}...')
         """Scrolls and clicks 'Load More' button until all products are loaded."""
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")  # Run in headless mode
@@ -50,7 +50,7 @@ class VirgioScrapper(BaseScraper):
         # Now scrape the fully loaded page
         html = driver.page_source
         driver.quit()
-        print('successfully fetched page with Selenium')
+        print(f'Fetching data for {self.url}...')
         return html
         
 
@@ -64,7 +64,7 @@ class VirgioScrapper(BaseScraper):
             href = a_tag["href"]
             if any(pattern in href for pattern in self.PRODUCT_PATTERNS):
                 unique_links.add(requests.compat.urljoin(self.url, href))
-
+        print(f"Found {len(unique_links)} unique product links. On {self.url}")    
         return unique_links
   
 

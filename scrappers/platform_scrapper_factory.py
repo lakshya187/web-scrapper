@@ -1,11 +1,16 @@
 from scrappers.virgio_scrapper  import VirgioScrapper
 from scrappers.westside_scrapper import WestsideScraper 
+from scrappers.nyka_fashion_scrapper import NykaaScraper
+from scrappers.tata_cliq_scrapper import TataCliqScraper    
+
 class ScraperFactory:
     """Factory to get the correct scraper for a given platform."""
 
     PLATFORM_MAP = {
         "virgio": VirgioScrapper,
         "westside": WestsideScraper,
+        "nykaafashion":  NykaaScraper,
+        'tatacliq': TataCliqScraper,
     }
 
     @staticmethod
