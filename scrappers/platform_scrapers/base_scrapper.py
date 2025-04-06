@@ -5,15 +5,19 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 import time
+from settings.logger import logger
+
+
 class BaseScraper(ABC):
     """Abstract base class for web scrapers."""
 
-    def __init__(self, url, headless=True, max_products= 1000):
+    def __init__(self, url, headless=True, max_products=1000):
         self.url = url
         self.MAX_PRODUCTS = max_products
         options = webdriver.ChromeOptions()
         if headless:
-            options.add_argument("--headless=new")  # Use new headless mode
+            options.add_argument("--headless")
+        options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--no-sandbox")
@@ -28,11 +32,14 @@ class BaseScraper(ABC):
         options.add_experimental_option("useAutomationExtension", False)
 
         # **Start Selenium WebDriver**
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        self.driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()), options=options
+        )
 
         # **Bypass Selenium detection**
-        self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-
+        self.driver.execute_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
+        )
 
     @abstractmethod
     def fetch_page(self):
@@ -56,12 +63,21 @@ class BaseScraper(ABC):
             json.dump(list(data), file, indent=4, ensure_ascii=False)
         print(f"📂 Data saved to {filename}")
 
+    @staticmethod
     def retry(action, retries=3):
-        for _ in range(retries):
+        for attempt in range(1, retries + 1):
             try:
                 return action()
-            except Exception:
-                time.sleep(1)
-        raise Exception("Failed after retries")
-
-
+            except Exception as e:
+                if attempt < retries:
+                    logger(
+                        f"⚠️ Attempt {attempt} failed with error: {e}. Retrying...",
+                        level="warning",
+                    )
+                    time.sleep(1)
+                else:
+                    logger(
+                        f"❌ All {retries} attempts failed. Last error: {e}",
+                        level="error",
+                    )
+                    raise
