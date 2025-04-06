@@ -1,54 +1,25 @@
 import time
 from bs4 import BeautifulSoup
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from scrappers.platform_scrapers.base_scrapper import BaseScraper
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
-
+from settings.logger import logger
 
 class TataCliqScraper(BaseScraper):
     
     def __init__(self, url, products_per_category=50):
-        super().__init__(url)
+        headless = False # Tata Cliq has anti-bot measures, using headless mode blocks requests and products are not fetched.
+        super().__init__(url, headless)
         self.products_per_category = products_per_category
-        self.driver = None
         self.all_products = set()
 
     def fetch_page(self):
         """Initialize headless Chrome with user-agent and extract category links from the sitemap."""
-        
-        options = webdriver.ChromeOptions()
-        # options.add_argument("--headless=new")  # Use new headless mode
-        options.add_argument("--disable-gpu")
-        options.add_argument("--window-size=1920,1080")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-
-        # **Set a random User-Agent**
-        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-        options.add_argument(f"user-agent={user_agent}")
-
-        # **Disable automation detection**
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
-        options.add_experimental_option("useAutomationExtension", False)
-
-        # **Start Selenium WebDriver**
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
-        # **Bypass Selenium detection**
-        self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
         self.driver.get(f"{self.url}sitemap")
         time.sleep(3)
-
         return self.get_category_links()
 
     def get_category_links(self):
@@ -84,7 +55,7 @@ class TataCliqScraper(BaseScraper):
                         product_links.add(full_url)
     
                 if len(product_links) >= max_links:
-                    print(f"[Info] Reached product limit ({max_links}). Stopping load.")
+                    logger(f"[Info] Reached product limit ({max_links}). Stopping load.")
                     break
                 
                 # Wait and check the button
@@ -102,12 +73,12 @@ class TataCliqScraper(BaseScraper):
             except Exception:
                 break
             
-        print(f"[Info] Total product links extracted: {len(product_links)}")
+        logger(f"[Info] Total product links extracted: {len(product_links)}")
         return set(list(product_links)[:max_links])  # just in case
 
     def scrape(self):
      """Main method to orchestrate the scraping process."""
-     print(f'Starting scrapping for {self.url}...')
+     logger(f'Starting scrapping for {self.url}...')
      all_categories = self.fetch_page()
 
 
@@ -115,7 +86,7 @@ class TataCliqScraper(BaseScraper):
          if len(self.all_products) >= self.MAX_PRODUCTS:
              break
 
-         print(f"\n[Scraping Category] {category_url}")
+         logger(f"\n[Scraping Category] {category_url}")
          self.driver.get(category_url)
          time.sleep(3)
 
@@ -123,17 +94,17 @@ class TataCliqScraper(BaseScraper):
          product_links = self.extract_product_links()
          total_found = len(product_links)
 
-         print(f"[Info] Found {total_found} products in category.")
+         logger(f"[Info] Found {total_found} products in category.")
 
          if total_found == 0:
-             print("[Warning] No products found in this category, skipping.")
+             logger("[Warning] No products found in this category, skipping.")
              continue
 
          # Limit to products_per_category and remaining max limit
          allowed_links = list(product_links)[:min(self.products_per_category, self.MAX_PRODUCTS - len(self.all_products))]
          self.all_products.update(allowed_links)
 
-         print(f"[Done] Added {len(allowed_links)} products from this category. Total so far: {len(self.all_products)}")
+         logger(f"[Done] Added {len(allowed_links)} products from this category. Total so far: {len(self.all_products)}")
 
      self.driver.quit()
      return list(self.all_products)[:self.MAX_PRODUCTS]

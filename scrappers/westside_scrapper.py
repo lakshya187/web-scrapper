@@ -1,12 +1,11 @@
 import time
-
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.common.exceptions import TimeoutException
 from scrappers.platform_scrapers.base_scrapper import BaseScraper
+from settings.logger import logger
 
 
 
@@ -15,7 +14,6 @@ class WestsideScraper(BaseScraper):
 
     def __init__(self, url):
         super().__init__(url)
-        self.driver = None  
         self.all_products = set()  # Store all product links
         self.MAX_NUMBER_OF_CATEGORIES = 5
        
@@ -26,32 +24,22 @@ class WestsideScraper(BaseScraper):
         return list(self.all_products)
 
     def fetch_page(self):
-        """Fetches collections and extracts products."""
-        options = webdriver.ChromeOptions()
-        options.add_argument("--headless")  # Run in background
-        options.add_argument("--disable-gpu")
-        options.add_argument("--window-size=1920,1080")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-
-        self.driver = webdriver.Chrome(options=options)
-
         try:
             self.driver.get(self.url)
             collection_links = self.get_collection_links()
-            print(f'🔗 Found {len(collection_links)} collections.')
+            logger(f'🔗 Found {len(collection_links)} collections.')
 
             for i, collection in enumerate(collection_links[:self.MAX_NUMBER_OF_CATEGORIES]):
-                print(f"📦 Scraping collection: {collection}")
+                logger(f"📦 Scraping collection: {collection}")
                 self.scrape_collection(collection)
 
                 if len(self.all_products) >= self.MAX_PRODUCTS:
-                    print("🚨 Reached global product limit, stopping early.")
+                    logger("🚨 Reached global product limit, stopping early.")
                     break
                 
 
         except Exception as e:
-            print(f"❌ Scraper failed: {e}")
+            logger(f"❌ Scraper failed: {e}")
 
         finally:
             self.driver.quit()  # Ensure WebDriver quits
@@ -66,7 +54,7 @@ class WestsideScraper(BaseScraper):
             )
             return list(set(link.get_attribute("href") for link in nav_links))  # Unique links only
         except TimeoutException:
-            print("⚠ Timeout while fetching collection links.")
+            logger("⚠ Timeout while fetching collection links.")
             return []
 
     def scrape_collection(self, collection_url):
@@ -85,14 +73,14 @@ class WestsideScraper(BaseScraper):
                 product_links = self.extract_product_links(page_source)
                 self.all_products.update(product_links)
 
-                print(f"✅ Scraped {len(product_links)} products from {collection_url}")
+                logger(f"✅ Scraped {len(product_links)} products from {collection_url}")
                 return
 
             except TimeoutException:
-                print(f"⏳ Timeout on attempt {attempt + 1} for {collection_url}. Retrying...")
+                logger(f"⏳ Timeout on attempt {attempt + 1} for {collection_url}. Retrying...")
                 time.sleep(2)
 
-        print(f"❌ Failed to scrape {collection_url} after {retries} retries.")
+        logger(f"❌ Failed to scrape {collection_url} after {retries} retries.")
 
     def scroll_to_load_products(self):
         """Scrolls to load lazy-loaded products."""

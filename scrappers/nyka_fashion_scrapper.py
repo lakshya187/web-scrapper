@@ -1,23 +1,17 @@
 import time
-import json
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from scrappers.platform_scrapers.base_scrapper import BaseScraper
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from settings.logger import logger
+
 
 
 class NykaaScraper(BaseScraper):
-    """Scraper for Nykaa Fashion platform."""
-
     def __init__(self, url,):
         super().__init__(url)
-        self.driver = None
-       
         self.all_products = set()
 
     def scrape(self):
@@ -27,39 +21,31 @@ class NykaaScraper(BaseScraper):
 
    
     def fetch_page(self):
-        """Uses Selenium to navigate categories, trigger lazy loading, and extract product links."""
-
-        # **Load the main URL**
+        """Using Selenium to navigate categories, trigger lazy loading, and extract product links."""
         self.driver.get(self.url)
-        time.sleep(3)  # Wait for elements to load
-
-
+        time.sleep(3)  
         # **Get category links**
         category_links = self.get_category_links()
-
         for category in category_links[:2]:  # Testing on 2 categories
-            print(f"📦 Scraping category: {category}")
+            logger(f"📦 Scraping category: {category}")
             self.scrape_category(category)
-
         self.driver.quit()
 
     def get_category_links(self):
         """Extracts category links from the navbar."""
-        wait = WebDriverWait(self.driver, 15)  # Increased timeout
+        wait = WebDriverWait(self.driver, 15)  
         try:
             nav_menu = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-at='mega-menu']")))
             category_elements = nav_menu.find_elements(By.CSS_SELECTOR, "a[href^='/']")
-        
             category_links = set(el.get_attribute("href") for el in category_elements if '/c/' in el.get_attribute("href"))
-
             if not category_links:
-             print("⚠️ No categories found. The page structure might have changed.")
+             logger("⚠️ No categories found. The page structure might have changed.")
         
             return list(category_links) if category_links else []
 
         except TimeoutException:
-            print("⏳ Timeout: Navbar categories not found. Retrying with page source...")
-            print(self.driver.page_source)  # Debugging: Print HTML
+            logger("⏳ Timeout: Navbar categories not found. Retrying with page source...")
+            logger(self.driver.page_source)  # Debugging: logger HTML
          
 
     def scrape_category(self, category_url):
@@ -73,7 +59,7 @@ class NykaaScraper(BaseScraper):
         self.all_products.update(product_links)
 
         if len(self.all_products) >= self.MAX_PRODUCTS:
-            print("Reached product limit. Stopping scrape.")
+            logger("Reached product limit. Stopping scrape.")
             return
 
     def scroll_to_load_products(self):
@@ -84,11 +70,10 @@ class NykaaScraper(BaseScraper):
          # Extract product links from the current page
          page_source = self.driver.page_source
          product_links = self.extract_product_links(page_source)
-         self.all_products.update(product_links)  # Add new links to set (ensures uniqueness)
-
+         self.all_products.update(product_links) 
          # Stop scrolling when the limit is reached
          if len(self.all_products) >= self.MAX_PRODUCTS:
-             print(f"✅ Collected {len(self.all_products)} products. Stopping scrolling.")
+             logger(f"✅ Collected {len(self.all_products)} products. Stopping scrolling.")
              break
 
          # Scroll down to load more products
@@ -98,7 +83,7 @@ class NykaaScraper(BaseScraper):
          # Check if the page height changes (to detect end of page)
          new_height = self.driver.execute_script("return document.body.scrollHeight")
          if new_height == last_height:
-             print("⚠️ No more products loaded. Stopping scrolling.")
+             logger("⚠️ No more products loaded. Stopping scrolling.")
              break
 
          last_height = new_height
@@ -115,5 +100,5 @@ class NykaaScraper(BaseScraper):
                 link = f"https://www.nykaafashion.com{link}"
             product_links.add(link)
 
-        print(f"✅ Extracted {len(product_links)} product links")
+        logger(f"✅ Extracted {len(product_links)} product links")
         return product_links

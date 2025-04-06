@@ -5,7 +5,6 @@ from scrappers.tata_cliq_scrapper import TataCliqScraper
 
 class ScraperFactory:
     """Factory to get the correct scraper for a given platform."""
-
     PLATFORM_MAP = {
         "virgio": VirgioScrapper,
         "westside": WestsideScraper,

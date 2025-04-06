@@ -1,0 +1,285 @@
+INFO:root:🚀 Starting scraper for https://www.virgio.com/
+INFO:WDM:====== WebDriver manager ======
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Driver [/home/lakshya187/.wdm/drivers/chromedriver/linux64/135.0.7049.42/chromedriver-linux64/chromedriver] found in cache
+INFO:root:Fetching data for https://www.virgio.com/...
+INFO:root:🚀 Starting scraper for https://www.westside.com/
+INFO:WDM:====== WebDriver manager ======
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Driver [/home/lakshya187/.wdm/drivers/chromedriver/linux64/135.0.7049.42/chromedriver-linux64/chromedriver] found in cache
+INFO:root:🚀 Starting scraper for https://www.nykaafashion.com/
+INFO:WDM:====== WebDriver manager ======
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Driver [/home/lakshya187/.wdm/drivers/chromedriver/linux64/135.0.7049.42/chromedriver-linux64/chromedriver] found in cache
+INFO:root:🚀 Starting scraper for https://www.tatacliq.com/
+INFO:WDM:====== WebDriver manager ======
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Get LATEST chromedriver version for google-chrome
+INFO:WDM:Driver [/home/lakshya187/.wdm/drivers/chromedriver/linux64/135.0.7049.42/chromedriver-linux64/chromedriver] found in cache
+INFO:root:Starting scrapping for https://www.tatacliq.com/...
+INFO:root:🔗 Found 185 collections.
+INFO:root:📦 Scraping collection: https://www.westside.com/collections/sale-womens-footwear
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/pinafore-dresses-for-women
+INFO:root:📦 Scraping category: https://www.nykaafashion.com/kids/c/6266?root=topnav_1
+INFO:root:[Info] Total product links extracted: 15
+INFO:root:[Info] Found 15 products in category.
+INFO:root:[Done] Added 15 products from this category. Total so far: 15
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/leather-shoes
+INFO:root:✅ Extracted 16 product links
+INFO:root:✅ Extracted 32 product links
+INFO:root:✅ Scraped 50 products from https://www.westside.com/collections/sale-womens-footwear
+INFO:root:📦 Scraping collection: https://www.westside.com/collections/sale-man
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Scraped 50 products from https://www.westside.com/collections/sale-man
+INFO:root:📦 Scraping collection: https://www.westside.com/collections/jackets-for-plus-size-women
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Scraped 6 products from https://www.westside.com/collections/jackets-for-plus-size-women
+INFO:root:📦 Scraping collection: https://www.westside.com/collections/man-nuon
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 32 product links
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 65
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/skechers-online/skechers-sandals-for-men
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 32 product links
+INFO:root:✅ Extracted 32 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 32 product links
+INFO:root:✅ Scraped 328 products from https://www.westside.com/collections/man-nuon
+INFO:root:📦 Scraping collection: https://www.westside.com/collections/y-f-girls-kids
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:[Info] Total product links extracted: 6
+INFO:root:[Info] Found 6 products in category.
+INFO:root:[Done] Added 6 products from this category. Total so far: 71
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/tweens-bras
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Scraped 228 products from https://www.westside.com/collections/y-f-girls-kids
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Extracted 28 product links
+INFO:root:[Info] Total product links extracted: 1
+INFO:root:[Info] Found 1 products in category.
+INFO:root:[Done] Added 1 products from this category. Total so far: 72
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/blue-sarees
+INFO:root:✅ Extracted 28 product links
+INFO:root:✅ Collected 1004 products. Stopping scrolling.
+INFO:root:✅ Extracted 28 product links
+INFO:root:Reached product limit. Stopping scrape.
+INFO:root:📦 Scraping category: https://www.nykaafashion.com/women/c/6557?root=topnav_1
+INFO:root:✅ Extracted 15 product links
+INFO:root:✅ Collected 1019 products. Stopping scrolling.
+INFO:root:✅ Extracted 15 product links
+INFO:root:Reached product limit. Stopping scrape.
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 122
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/strapless-bras
+INFO:root:No more 'Load More' button found. All products loaded.
+INFO:root:Fetching data for https://www.virgio.com/...
+INFO:root:[Info] Total product links extracted: 11
+INFO:root:[Info] Found 11 products in category.
+INFO:root:[Done] Added 11 products from this category. Total so far: 133
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/pink-shoes-for-girls
+INFO:root:Found 1221 unique product links. On https://www.virgio.com/
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 183
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/newbalance-online/new-balance-flip-flops
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 233
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/pink-saree-blouses
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 283
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/trending-sarees
+INFO:root:[Info] Total product links extracted: 3
+INFO:root:[Info] Found 3 products in category.
+INFO:root:[Done] Added 3 products from this category. Total so far: 286
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/flared-jeans-for-women
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 336
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/tant-sarees
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 379
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/ucb-online/ucb-shoes
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 79
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 429
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/black-dresses-for-women
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 479
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/mid-top-sneakers
+INFO:root:[Info] Total product links extracted: 2
+INFO:root:[Info] Found 2 products in category.
+INFO:root:[Done] Added 2 products from this category. Total so far: 481
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/nivia-online/nivia-badminton-shoes
+INFO:root:[Info] Total product links extracted: 3
+INFO:root:[Info] Found 3 products in category.
+INFO:root:[Done] Added 3 products from this category. Total so far: 484
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/readymade-bridal-blouses
+INFO:root:[Info] Total product links extracted: 3
+INFO:root:[Info] Found 3 products in category.
+INFO:root:[Done] Added 3 products from this category. Total so far: 487
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/kurtis-with-shrugs
+INFO:root:[Info] Total product links extracted: 24
+INFO:root:[Info] Found 24 products in category.
+INFO:root:[Done] Added 24 products from this category. Total so far: 511
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/kanchipuram-sarees
+INFO:root:[Info] Total product links extracted: 21
+INFO:root:[Info] Found 21 products in category.
+INFO:root:[Done] Added 21 products from this category. Total so far: 532
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/leather-slippers
+INFO:root:[Info] Total product links extracted: 47
+INFO:root:[Info] Found 47 products in category.
+INFO:root:[Done] Added 47 products from this category. Total so far: 579
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/semi-formal-shoes
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 622
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/halter-neck-bras
+INFO:root:[Info] Total product links extracted: 4
+INFO:root:[Info] Found 4 products in category.
+INFO:root:[Done] Added 4 products from this category. Total so far: 626
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/mens-clothing-online/yellow-hoodies
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 676
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/plain-cotton-sarees
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 53
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 726
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/boxing-shoes
+INFO:root:[Info] Total product links extracted: 36
+INFO:root:[Info] Found 36 products in category.
+INFO:root:[Done] Added 36 products from this category. Total so far: 762
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/loose-tops-for-women
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 812
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/kathpadar-sarees
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 812
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/pattu-dresses
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 853
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/white-puma-shoes-women
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 62
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 903
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/chikankari-kurtis-with-jeans
+INFO:root:[Info] Total product links extracted: 4
+INFO:root:[Info] Found 4 products in category.
+INFO:root:[Done] Added 4 products from this category. Total so far: 907
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/plus-size-dresses
+INFO:root:[Info] Total product links extracted: 0
+INFO:root:[Info] Found 0 products in category.
+INFO:root:[Warning] No products found in this category, skipping.
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/yellow-kurtis
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 50 products from this category. Total so far: 956
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/summer-cotton-sarees
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 44 products from this category. Total so far: 984
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/footwear-online/open-toe-flats
+INFO:root:[Info] Total product links extracted: 11
+INFO:root:[Info] Found 11 products in category.
+INFO:root:[Done] Added 11 products from this category. Total so far: 995
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/womens-clothing-online/pink-silk-sarees
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 80
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 5 products from this category. Total so far: 998
+INFO:root:
+[Scraping Category] https://www.tatacliq.com/action-online/action-sports-shoes
+INFO:root:[Info] Reached product limit (50). Stopping load.
+INFO:root:[Info] Total product links extracted: 68
+INFO:root:[Info] Found 50 products in category.
+INFO:root:[Done] Added 2 products from this category. Total so far: 1000
+INFO:root:📂 Data saved to ./output/scraped_data.json
+INFO:root:🛑 Scraping completed.
