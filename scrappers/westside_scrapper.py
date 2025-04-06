@@ -8,9 +8,7 @@ from bs4 import BeautifulSoup
 from selenium.common.exceptions import TimeoutException, WebDriverException
 from scrappers.platform_scrapers.base_scrapper import BaseScraper
 
-# File Paths
-OUTPUT_FILE = "./output/westside_products.json"
-BACKUP_FILE = "./output/westside_products_backup.json"
+
 
 class WestsideScraper(BaseScraper):
     """Scraper for Westside platform with data saving and timeout handling."""
@@ -19,11 +17,13 @@ class WestsideScraper(BaseScraper):
         super().__init__(url)
         self.driver = None  
         self.all_products = set()  # Store all product links
-        self.MAX_NUMBER_OF_CATEGORIES = 2
+        self.MAX_NUMBER_OF_CATEGORIES = 5
+       
 
     def scrape(self):
         """Main scraping function"""
-        return self.fetch_page()
+        self.fetch_page()
+        return list(self.all_products)
 
     def fetch_page(self):
         """Fetches collections and extracts products."""
@@ -45,17 +45,17 @@ class WestsideScraper(BaseScraper):
                 print(f"📦 Scraping collection: {collection}")
                 self.scrape_collection(collection)
 
-                # **Save progress after every collection**
-                if (i + 1) % 3 == 0:
-                    self.backup_data(self.all_products, OUTPUT_FILE)
+                if len(self.all_products) >= self.MAX_PRODUCTS:
+                    print("🚨 Reached global product limit, stopping early.")
+                    break
+                
 
         except Exception as e:
             print(f"❌ Scraper failed: {e}")
-            self.backup_data(self.all_products, BACKUP_FILE)  # Save partial data before quitting
 
         finally:
             self.driver.quit()  # Ensure WebDriver quits
-        return list(self.all_products)
+       
 
     def get_collection_links(self):
         """Extracts collection links from navbar."""

@@ -31,7 +31,7 @@ class VirgioScrapper(BaseScraper):
         options.add_argument("--disable-dev-shm-usage")
 
         driver = webdriver.Chrome(options=options)
-        driver.get(self.url)
+        driver.get(f"{self.url}collections/all")
         wait = WebDriverWait(driver, 10)
 
         while True:
@@ -53,9 +53,6 @@ class VirgioScrapper(BaseScraper):
         print(f'Fetching data for {self.url}...')
         return html
         
-
-    pass
-
     def extract_product_links(self, html):
         soup = BeautifulSoup(html, "html.parser")
         unique_links = set()

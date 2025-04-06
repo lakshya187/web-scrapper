@@ -9,6 +9,7 @@ class BaseScraper(ABC):
 
     def __init__(self, url):
         self.url = url
+        self.MAX_PRODUCTS = 1000
 
     @abstractmethod
     def fetch_page(self):
