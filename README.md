@@ -1,6 +1,4 @@
-# Assignment 6: Backend Engineer Role
-
-## Problem Statement: Crawler for Discovering Product URLs on E-commerce Websites
+# Problem Statement: Crawler for Discovering Product URLs on E-commerce Websites
 
 ### Objective
 
@@ -17,7 +15,7 @@ Design and implement a scalable, robust, and performant web crawler that discove
 
 ## Tech Stack
 
-- **Python** (Primary language)
+- **Python 3.12.1+** (Primary language)
 - **Selenium** (Web automation & dynamic content handling)
 - **BeautifulSoup** (HTML parsing)
 - **JSON** (Structured output)
@@ -36,8 +34,8 @@ project-root/
 │       ├── tata_cliq.py
 │       ├── nykaa_fashion.py
 │       └── westside.py
-├── data/                           # Output folder for scraped product URLs
-│   └── <domain>.json
+├── output/                           # Output folder for scraped product URLs
+│   └── scrapped_data.json
 ├── settings/
 │   └── logger.py                   # Logger for info, warnings, errors
 ├── main.py                         # Entry point to orchestrate all scrapers
@@ -80,8 +78,7 @@ Each scraper outputs product links in the following structure:
 
 ```json
 {
-  "domain": "https://www.example.com",
-  "products": [
+  "https://www.example.com": [
     "https://www.example.com/product/123",
     "https://www.example.com/product/456"
   ]
