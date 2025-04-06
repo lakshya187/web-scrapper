@@ -2,7 +2,7 @@ import asyncio
 import json
 from settings.logger import logger
 
-from scrappers.platform_scrapper_factory import ScraperFactory
+from scrappers.platform_factory import ScraperFactory
 
 
 def save_to_json(data, filename="./output/scraped_data.json"):
@@ -35,9 +35,9 @@ async def start_crawler(domains):
 
 if __name__ == "__main__":
     domains = [
-        # {"url": "https://www.virgio.com/", "platform": "virgio"},
-        # {"url": "https://www.westside.com/", "platform": "westside"},
-        # {"url": "https://www.nykaafashion.com/", "platform": "nykaafashion"},
+        {"url": "https://www.virgio.com/", "platform": "virgio"},
+        {"url": "https://www.westside.com/", "platform": "westside"},
+        {"url": "https://www.nykaafashion.com/", "platform": "nykaafashion"},
         {"url": "https://www.tatacliq.com/", "platform": "tatacliq"},
     ]
     asyncio.run(start_crawler(domains))

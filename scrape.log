@@ -1,9 +1,0 @@
-2025-04-07 00:05:33,897 - INFO - 🚀 Starting scraper for https://www.tatacliq.com/
-2025-04-07 00:05:33,898 - INFO - ====== WebDriver manager ======
-2025-04-07 00:05:33,945 - INFO - Get LATEST chromedriver version for google-chrome
-2025-04-07 00:06:10,390 - INFO - Get LATEST chromedriver version for google-chrome
-2025-04-07 00:06:10,608 - INFO - Driver [/home/lakshya187/.wdm/drivers/chromedriver/linux64/135.0.7049.42/chromedriver-linux64/chromedriver] found in cache
-2025-04-07 00:06:24,437 - INFO - 
-[Scraping Category] https://www.tatacliq.com/womens-clothing-online/blouse-bras
-2025-04-07 00:06:39,457 - INFO - [Info] Total product links extracted: 0
-2025-04-07 00:06:44,199 - INFO - [Info] Found 0 products in category.

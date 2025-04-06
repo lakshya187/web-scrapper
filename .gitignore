@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Jupyter and other logs/cache
+.ipynb_checkpoints/
+*.log
+*.bak
+.cache/
+scrape.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Scraped data
+output/
+
+
+scrape.log

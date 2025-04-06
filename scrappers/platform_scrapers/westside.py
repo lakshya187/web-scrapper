@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from selenium.common.exceptions import TimeoutException
-from scrappers.platform_scrapers.base_scrapper import BaseScraper
+from scrappers.base import BaseScraper
 from settings.logger import logger
 
 

@@ -15,8 +15,9 @@ class BaseScraper(ABC):
         self.url = url
         self.MAX_PRODUCTS = max_products
         options = webdriver.ChromeOptions()
+        # some websites like tatacliq.com require a non-headless browser
         if headless:
-            options.add_argument("--headless")
+            options.add_argument("--headless=new")
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--disable-gpu")
         options.add_argument("--window-size=1920,1080")

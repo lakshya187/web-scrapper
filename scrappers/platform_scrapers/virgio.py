@@ -2,7 +2,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from scrappers.platform_scrapers.base_scrapper import BaseScraper
+from scrappers.base import BaseScraper
 from bs4 import BeautifulSoup
 import requests
 from settings.logger import logger
