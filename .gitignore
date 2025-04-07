@@ -27,7 +27,8 @@ scrape.log
 Thumbs.db
 
 # Scraped data
-output/
+output/*
+
 
 
 scrape.log

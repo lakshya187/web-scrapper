@@ -144,7 +144,7 @@ The `logger.py` in `settings/` provides a centralized utility for logging info, 
 
 ## 📹 Video Demo
 
-Loom recording explaining the approach, code structure, and results: [Insert Loom Link Here]
+Loom recording explaining the approach, code structure, and results: https://www.loom.com/share/dddbbf7438ea43df9b848bc998a3d4c7?sid=fc2ad6e0-d988-4030-a4f1-ec5d2ae6f673
 
 ---
 
@@ -152,15 +152,6 @@ Loom recording explaining the approach, code structure, and results: [Insert Loo
 
 - Some sites like TataCliq are resistant to headless browsers. For such sites, scraping works only in non-headless mode.
 - Minor inconsistencies may arise from dynamic JS behavior, but retries handle most issues.
-
----
-
-## 📌 Next Steps (Optional Enhancements)
-
-- Convert all scrapers to run asynchronously
-- Add retry limits & exponential backoff
-- Save crawl stats (time taken, pages visited, failures)
-- Add CLI to choose domains to run
 
 ---
 
